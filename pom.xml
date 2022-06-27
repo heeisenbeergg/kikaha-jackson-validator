@@ -25,7 +25,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>${parent.groupId}</groupId>
+			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>kikaha-urouting</artifactId>
 			<scope>provided</scope>
 		</dependency>
