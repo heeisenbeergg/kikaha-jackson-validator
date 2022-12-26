@@ -3,7 +3,6 @@ package kikaha.urouting.serializers.jackson;
 import java.io.IOException;
 import javax.inject.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import kikaha.core.modules.http.ContentType;
 import kikaha.core.modules.websocket.WebSocketSession;
 import kikaha.urouting.api.Mimes;

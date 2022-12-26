@@ -1,6 +1,5 @@
 package kikaha.urouting.serializers.jackson;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.undertow.server.HttpServerExchange;
 import kikaha.core.modules.http.ContentType;
 import kikaha.urouting.api.Mimes;
