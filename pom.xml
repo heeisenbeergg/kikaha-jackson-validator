@@ -2,18 +2,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>io.skullabs.kikaha</groupId>
-		<version>2.1.8.Final</version>
-		<artifactId>kikaha-project</artifactId>
-	</parent>
-
 	<groupId>com.heeisenbeergg.kikaha</groupId>
 	<artifactId>kikaha-jackson-validator</artifactId>
 	<name>Kikaha: Jackson Validator</name>
 	<packaging>jar</packaging>
 	<version>1.0.Final</version>
 	<url>https://github.com/heeisenbeergg/kikaha-jackson-validator</url>
+
+	<properties>
+		<config.encoding.source>UTF-8</config.encoding.source>
+		<version.java>11</version.java>
+		<version.kikaha>2.1.8.Final</version.kikaha>
+		<version.jackson>2.7.5</version.jackson>
+		<version.compiler.plugin>3.3</version.compiler.plugin>
+	</properties>
 
 	<licenses>
 		<license>
@@ -25,24 +27,20 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>io.skullabs.kikaha</groupId>
 			<artifactId>kikaha-urouting</artifactId>
+			<version>${version.kikaha}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
-			<version>2.7.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.squareup.okhttp3</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>3.6.0</version>
-			<scope>test</scope>
+			<version>${version.jackson}</version>
 		</dependency>
 	</dependencies>
 
@@ -53,5 +51,49 @@
 			<url>https://maven.pkg.github.com/heeisenbeergg/kikaha-jackson-validator</url>
 		</repository>
 	</distributionManagement>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.kuali.maven.wagons</groupId>
+				<artifactId>maven-s3-wagon</artifactId>
+				<version>1.2.1</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<!-- attach test jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${version.java}</source>
+					<target>${version.java</target>
+					<optimize>true</optimize>
+					<debug>false</debug>
+					<encoding>${config.encoding.source}</encoding>
+					<generatedTestSourcesDirectory>${project.build.directory}/generated-test-sources/annotations</generatedTestSourcesDirectory>
+					<generatedSourcesDirectory>${project.build.directory}/generated-sources/annotations</generatedSourcesDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
